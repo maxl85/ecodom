@@ -3,5 +3,5 @@ from django.urls import path
 
 urlpatterns = [
     path('', views.index, name='store'),
-    path('category/<int:pk>', views.get_category, name='category'),
+    path('category/<int:category_id>', views.get_category, name='category'),
 ]
