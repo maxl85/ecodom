@@ -11,9 +11,9 @@ def categories_path(instance, filename):
     return 'images/categories/{0}/{1}'.format(instance.name, filename)
 
 class Category(MPTTModel):
-    name = models.CharField(max_length=255, unique=True, verbose_name='Имя')
+    name = models.CharField(max_length=255, db_index=True, unique=True, verbose_name='Имя')
     slug = models.SlugField(max_length=255, unique=True)
-    parent = TreeForeignKey('self', on_delete=models.CASCADE, blank=True, null=True, related_name='children', verbose_name='Категория')
+    parent = TreeForeignKey('self', on_delete=models.PROTECT, blank=True, null=True, related_name='children', verbose_name='Категория')
     image = models.ImageField(upload_to=categories_path, max_length=255, blank=True, verbose_name='Фото')
 
     class MPTTMeta:
@@ -37,7 +37,7 @@ def products_path(instance, filename):
 class Product(models.Model):
     name = models.CharField(max_length=255, unique=True, verbose_name='Имя')
     slug = models.SlugField(max_length=255, unique=True)
-    category = TreeForeignKey(Category, on_delete=models.CASCADE, verbose_name='Категория')
+    category = TreeForeignKey(Category, on_delete=models.PROTECT, verbose_name='Категория')
     description = models.TextField(blank=True, verbose_name='Описание')
     # properties = models.TextField(blank=True, verbose_name='Характеристики')
     price = models.IntegerField(default=0, verbose_name='Цена')

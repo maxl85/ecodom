@@ -20,5 +20,16 @@
             </li>
         {% endrecursetree %}
     </ul>
+
+    <hr>
+
+    
+    {% for item in products %}
+        <div>
+            <p>{{item.name}}</p>
+            <p>{{item.category}}</p>
+        </div>
+        <hr>
+    {% endfor %}
 </body>
 </html>

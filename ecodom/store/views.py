@@ -1,9 +1,15 @@
 from django.shortcuts import render
-from .models import Category
+from .models import Category, Product
 
 
 def index(request):
-    return render(request, "store/index.html", {'categories': Category.objects.all()})
+    context = {
+        'categories': Category.objects.all(),
+        'products': Product.objects.all(),
+    }
+    return render(request, "store/index.html", context)
 
 def get_category(request):
     pass
+
+

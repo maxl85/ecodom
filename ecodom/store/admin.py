@@ -13,8 +13,9 @@ class ProductAdmin(admin.ModelAdmin):
     # save_on_top = True
     list_display = ('name', 'category', 'price', 'is_available', 'created_date', 'modified_date')
     list_display_links = ('name',)
-    search_fields = ('category',)
-    list_filter = ('category',)
+    list_filter = ('category', 'is_available')
+    list_editable = ('is_available',)
+    search_fields = ('name',)
     readonly_fields = ('created_date', 'modified_date', 'get_image')
     fields = ('name', 'slug', 'category', 'description', 'price', 'images', 'get_image', 'is_available', 'created_date', 'modified_date')
 
@@ -28,7 +29,7 @@ class ProductAdmin(admin.ModelAdmin):
 
 admin.site.register(
     Category, CategoryAdmin,
-        list_display=(
+    list_display=(
         'tree_actions',
         'indented_title',
         # ...more fields if you feel like it...
