@@ -1,5 +1,6 @@
 {% load store_tags %}
 
+{% comment %}
 <div class="list-group">
   {% get_categories as categories%}
   {% for item in categories %}
@@ -8,5 +9,9 @@
 </div>
 
 <br>
+{% endcomment %}
 
+{% comment %} 
+Убрать _sidebar.html и перенести код в index.html и category.html
+{% endcomment %}
 {% show_categories %}

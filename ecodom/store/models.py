@@ -27,7 +27,7 @@ class Category(MPTTModel):
         return self.name
     
     def get_absolute_url(self):
-        return reverse("category", kwargs={"pk": self.pk})
+        return reverse("category", kwargs={"category_id": self.pk})
 
 
 def products_path(instance, filename):
@@ -54,3 +54,6 @@ class Product(models.Model):
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
         ordering = ['-created_date']
+    
+    def get_absolute_url(self):
+        return reverse("view_product", kwargs={"product_id": self.pk})
