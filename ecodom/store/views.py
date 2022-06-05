@@ -5,7 +5,6 @@ from .models import Category, Product
 
 def index(request):
     context = {
-        'categories': Category.objects.all(),
         'products': Product.objects.all(),
         'title': 'ЭкоДом',
     }
@@ -13,8 +12,8 @@ def index(request):
 
 def get_category(request, category_id):
     products = Product.objects.filter(category_id=category_id)
-    categories = Category.objects.all()
+    #categories = Category.objects.all()
     category = Category.objects.get(pk=category_id)
-    return render(request, "store/category.html", {'products': products, 'categories': categories, 'category': category})
+    return render(request, "store/category.html", {'products': products, 'category': category})
 
 
