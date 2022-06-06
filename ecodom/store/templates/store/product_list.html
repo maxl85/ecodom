@@ -1,12 +1,24 @@
 {% extends 'base.html' %}
 
 {% block title %}
-{{ title }}
+{{title}}
 {% endblock title %}
 
 {% block sidebar %}
 {% include 'inc/_sidebar.html' %}
 {% endblock sidebar %}
+
+
+{% if title %}
+<div class="div">
+    <p></p>
+</div>
+{% else %}
+<div class="div">
+    <p></p>
+</div>
+{% endif %}
+
 
 {% block content %}
 {% for item in products %}

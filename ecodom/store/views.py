@@ -1,28 +1,32 @@
 from msilib.schema import ListView
-from django.shortcuts import render, get_object_or_404
+# from django.shortcuts import render, get_object_or_404
 from .models import Category, Product
 from django.views.generic import ListView, DetailView
+from django.core.paginator import Paginator
 
 
 class ProductListView(ListView):
     model = Product
     template_name = "store/product_list.html"
     context_object_name = 'products'
-    # extra_context = {'title': 'ЭкоДом'}
+    # queryset = Product.objects.select_related('category')
+    paginate_by = 2
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = 'ЭкоДом'
         return context
     
-    # def get_queryset(self):
-    #     return Product.objects.filter(is_available=True)
+    def get_queryset(self):
+        # return Product.objects.filter(is_available=True)
+        return Product.objects.all().select_related('category')
     
 class ProductByCategory(ListView):
     model = Product
     template_name = "store/product_list.html"
     context_object_name = 'products'
-    allow_empty = False
+    allow_empty = True
+    paginate_by = 2
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -31,14 +35,13 @@ class ProductByCategory(ListView):
 
     def get_queryset(self):
         # return Product.objects.filter(category_id=self.kwargs['category_id'], is_available=True)
-        return Product.objects.filter(category_id=self.kwargs['category_id'])
+        return Product.objects.filter(category_id=self.kwargs['category_id']).select_related('category')
 
 class ProductDetailView(DetailView):
     model = Product
     template_name = "store/product_detail.html"
     context_object_name = 'item'
     # pk_url_kwarg = 'product_id'
-
 
 
 
