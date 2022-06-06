@@ -56,4 +56,5 @@ class Product(models.Model):
         ordering = ['-created_date']
     
     def get_absolute_url(self):
-        return reverse("view_product", kwargs={"product_id": self.pk})
+        # return reverse("view_product", kwargs={"product_id": self.pk})
+        return reverse("view_product", kwargs={"pk": self.pk})

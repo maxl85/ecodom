@@ -2,16 +2,16 @@
 
 {% comment %}
 <div class="list-group">
-  {% get_categories as categories%}
-  {% for item in categories %}
+    {% get_categories as categories%}
+    {% for item in categories %}
     <a href="{% url 'category' item.pk %}" class="list-group-item list-group-item-action">{{ item.name }}</a>
-  {% endfor %}
+    {% endfor %}
 </div>
 
 <br>
 {% endcomment %}
 
-{% comment %} 
+{% comment %}
 Убрать _sidebar.html и перенести код в index.html и category.html
 {% endcomment %}
 {% show_categories %}
